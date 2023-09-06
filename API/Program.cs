@@ -13,9 +13,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ChessGame>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
+    options.AddPolicy(name: MyAllowSpecificOrigins, b =>
     {
-        builder.WithOrigins("*");
+        b.WithOrigins("http://localhost:5173", "*").AllowAnyHeader().AllowAnyMethod();
     });
 });
 

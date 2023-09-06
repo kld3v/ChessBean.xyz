@@ -31,7 +31,7 @@ public class ChessController : ControllerBase
     public IActionResult StartNewGame()
     {
         _chessGame.CurrentChessGame.Clear();
-        return Ok("Game Started");
+        return Ok(new {message = "Game Started"});
     }
 
     [HttpGet("Pgn")]
