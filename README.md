@@ -1,4 +1,4 @@
-# KolChess
+# VecChess
 
 Chess api to handle back end logic and game state. 
 
