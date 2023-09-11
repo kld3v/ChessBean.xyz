@@ -5,13 +5,21 @@ interface IRank {
 	tileBlack: any
 	tileWhite: any
 	rowHeight: number
-	setDestinationSquare: (position: { x: number; z: number }) => void
+	setxzPositionToMovePiece: any
+	setChessMoveToSubmitToGame: any
+	chessMoveToSubmitToGame: {
+		piece: string
+		coord: string
+		readyToSubmit: boolean
+	}
 }
 export const RankFour: FC<IRank> = ({
 	tileBlack,
 	tileWhite,
 	rowHeight = -0.1,
-	setDestinationSquare,
+	setxzPositionToMovePiece,
+	chessMoveToSubmitToGame,
+	setChessMoveToSubmitToGame,
 }) => {
 	return (
 		<>
@@ -62,7 +70,17 @@ export const RankFour: FC<IRank> = ({
 				type='fixed'
 				name='a4'
 			>
-				<mesh onClick={() => setDestinationSquare({ x: -3.5, z: 0.5 })}>
+				<mesh
+					onClick={() => {
+						setxzPositionToMovePiece({ x: -3.5, z: 0.5 })
+						setChessMoveToSubmitToGame({
+							piece: chessMoveToSubmitToGame.piece,
+							coord: 'a4',
+							readyToSubmit: true,
+						})
+						console.log('click')
+					}}
+				>
 					{tileWhite}
 				</mesh>
 			</RigidBody>

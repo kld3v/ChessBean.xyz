@@ -5,16 +5,16 @@ interface IMoveMechanics {
 	xzPositionToMovePiece: { x: number; z: number }
 	setChessMoveToSubmitToGame: any
 }
-const WhitePawn: FC<IMoveMechanics> = ({
+const BlackPawn: FC<IMoveMechanics> = ({
 	xzPositionToMovePiece,
 	setChessMoveToSubmitToGame,
 }) => {
-	const whitePawn = useRef()
+	const blackPawn = useRef()
 
 	useEffect(() => {
 		if (isReadyToMove) {
 			// @ts-ignore
-			whitePawn.current?.setNextKinematicTranslation({
+			blackPawn.current?.setNextKinematicTranslation({
 				x: xzPositionToMovePiece.x,
 				y: 0.5,
 				z: xzPositionToMovePiece.z,
@@ -28,8 +28,8 @@ const WhitePawn: FC<IMoveMechanics> = ({
 	return (
 		<RigidBody
 			// @ts-ignore
-			ref={whitePawn}
-			position={[-3.5, 0.5, 2.5]}
+			ref={blackPawn}
+			position={[-3.5, 0.5, -2.5]}
 			type='kinematicPosition'
 		>
 			<mesh
@@ -42,11 +42,11 @@ const WhitePawn: FC<IMoveMechanics> = ({
 			>
 				<boxGeometry args={[0.5, 1, 0.5]}></boxGeometry>
 				<meshBasicMaterial
-					color={isReadyToMove ? 'red' : 'white'}
+					color={isReadyToMove ? 'red' : 'grey'}
 				></meshBasicMaterial>
 			</mesh>
 		</RigidBody>
 	)
 }
 
-export default WhitePawn
+export default BlackPawn

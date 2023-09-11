@@ -5,16 +5,16 @@ interface IMoveMechanics {
 	xzPositionToMovePiece: { x: number; z: number }
 	setChessMoveToSubmitToGame: any
 }
-const WhitePawn: FC<IMoveMechanics> = ({
+const WhiteRook: FC<IMoveMechanics> = ({
 	xzPositionToMovePiece,
 	setChessMoveToSubmitToGame,
 }) => {
-	const whitePawn = useRef()
+	const whiteRook = useRef()
 
 	useEffect(() => {
 		if (isReadyToMove) {
 			// @ts-ignore
-			whitePawn.current?.setNextKinematicTranslation({
+			whiteRook.current?.setNextKinematicTranslation({
 				x: xzPositionToMovePiece.x,
 				y: 0.5,
 				z: xzPositionToMovePiece.z,
@@ -28,25 +28,25 @@ const WhitePawn: FC<IMoveMechanics> = ({
 	return (
 		<RigidBody
 			// @ts-ignore
-			ref={whitePawn}
-			position={[-3.5, 0.5, 2.5]}
+			ref={whiteRook}
+			position={[-3.5, 0.5, 3.5]}
 			type='kinematicPosition'
 		>
 			<mesh
 				onClick={(e) => {
 					e.stopPropagation()
 					setIsReadyToMove(!isReadyToMove)
-					setChessMoveToSubmitToGame({ piece: '', coord: '', readyToSubmit: false })
+					setChessMoveToSubmitToGame({ piece: 'R', coord: '', readyToSubmit: false })
 				}}
 				castShadow
 			>
 				<boxGeometry args={[0.5, 1, 0.5]}></boxGeometry>
 				<meshBasicMaterial
-					color={isReadyToMove ? 'red' : 'white'}
+					color={isReadyToMove ? 'red' : 'green'}
 				></meshBasicMaterial>
 			</mesh>
 		</RigidBody>
 	)
 }
 
-export default WhitePawn
+export default WhiteRook
