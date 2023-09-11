@@ -49,9 +49,6 @@ export const RankTwo: FC<IRank> = ({ tileBlack, tileWhite, rowHeight }) => {
 			<RigidBody
 				type='fixed'
 				position={[-2.5, rowHeight, 2.5]}
-				onClick={() => {
-					console.log('hello')
-				}}
 			>
 				<mesh>{tileBlack}</mesh>
 			</RigidBody>

@@ -1,13 +1,4 @@
-import {
-	Environment,
-	OrbitControls,
-	PivotControls,
-	PresentationControls,
-	TransformControls,
-	useGLTF,
-} from '@react-three/drei'
-import Board from './WhitePawn'
-import { Physics, RigidBody } from '@react-three/rapier'
+import { Physics } from '@react-three/rapier'
 import { Suspense, useMemo, useState } from 'react'
 import { RankOne } from './RankOne'
 import { RankTwo } from './RankTwo'
@@ -20,6 +11,7 @@ import { RankEight } from './RankEight'
 import WhitePawn from './WhitePawn'
 import { Perf } from 'r3f-perf'
 import * as THREE from 'three'
+import { OrbitControls } from '@react-three/drei'
 
 export default function Experience() {
 	const chessTileGeometry = useMemo(() => {
@@ -51,8 +43,8 @@ export default function Experience() {
 		></mesh>
 	)
 
-	const [rowHeight, setrowHeight] = useState(-0.1)
-
+	const [rowHeight] = useState(-0.1)
+	// @ts-ignore
 	const startNewGame = async () => {
 		const url = 'https://localhost:7204/api/Chess/StartNewGame'
 
@@ -78,7 +70,7 @@ export default function Experience() {
 	const [destinationSquare, setDestinationSquare] = useState<{
 		x: number
 		z: number
-	}>()
+	}>({ x: 0, z: 0 })
 
 	console.log(destinationSquare)
 	return (
@@ -98,6 +90,7 @@ export default function Experience() {
 			<Suspense>
 				<Physics debug>
 					<gridHelper args={[20, 20, 0xff0000, 'teal']} />
+
 					<WhitePawn destinationSquare={destinationSquare} />
 
 					<RankOne

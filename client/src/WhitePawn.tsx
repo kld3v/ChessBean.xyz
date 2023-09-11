@@ -17,6 +17,7 @@ const WhitePawn: FC<IMoveMechanics> = ({ destinationSquare }) => {
 
 	useEffect(() => {
 		if (isReadyToMove) {
+			// @ts-ignore
 			whitePawn.current?.setNextKinematicTranslation({
 				x: destinationSquare.x,
 				y: 0.5,
@@ -31,6 +32,7 @@ const WhitePawn: FC<IMoveMechanics> = ({ destinationSquare }) => {
 	console.log(isReadyToMove)
 	return (
 		<RigidBody
+			// @ts-ignore
 			ref={whitePawn}
 			position={[-3.5, 0.5, 2.5]}
 			type='kinematicPosition'
