@@ -1,5 +1,4 @@
 import { Environment, OrbitControls, Sky } from '@react-three/drei'
-import React from 'react'
 
 export const LightAndControls = () => {
 	return (

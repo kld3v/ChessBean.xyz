@@ -5,10 +5,10 @@ interface IRank {
 	tileBlack: any
 	tileWhite: any
 	rowHeight: number
-	setxzPositionToMovePiece: any
 	setChessMoveToSubmitToGame: any
 	chessMoveToSubmitToGame: {
 		piece: string
+		pieceName: string
 		coord: string
 		readyToSubmit: boolean
 	}
@@ -17,7 +17,6 @@ export const RankFour: FC<IRank> = ({
 	tileBlack,
 	tileWhite,
 	rowHeight = -0.1,
-	setxzPositionToMovePiece,
 	chessMoveToSubmitToGame,
 	setChessMoveToSubmitToGame,
 }) => {
@@ -72,9 +71,9 @@ export const RankFour: FC<IRank> = ({
 			>
 				<mesh
 					onClick={() => {
-						setxzPositionToMovePiece({ x: -3.5, z: 0.5 })
 						setChessMoveToSubmitToGame({
 							piece: chessMoveToSubmitToGame.piece,
+							pieceName: chessMoveToSubmitToGame.pieceName,
 							coord: 'a4',
 							readyToSubmit: true,
 						})

@@ -9,7 +9,6 @@ Title: Chess Board And Figures
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import { Vector3 } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
 	nodes: {

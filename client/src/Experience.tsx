@@ -8,16 +8,11 @@ import { RankFive } from './RankFive'
 import { RankSix } from './RankSix'
 import { RankSeven } from './RankSeven'
 import { RankEight } from './RankEight'
-import WhitePawn from './WhitePawn'
 import { Perf } from 'r3f-perf'
 import * as THREE from 'three'
 import { ChessGame } from './ChessGame'
-import chessObject from './chessObject'
-import WhiteRook from './WhiteRook'
-import BlackPawn from './BlackPawn'
 import { LightAndControls } from './LightAndControls'
 import Board from './Board'
-import { Vector3 } from '@react-three/fiber'
 
 export default function Experience() {
 	const chessTileGeometry = useMemo(() => {
@@ -83,12 +78,12 @@ export default function Experience() {
 		}
 	}
 
-	const [xzPositionToMovePiece, setxzPositionToMovePiece] = useState<{
-		x: number
-		z: number
-	}>({ x: 0, z: 0 })
-
-	const [chessMoveToSubmitToGame, setChessMoveToSubmitToGame] = useState({
+	const [chessMoveToSubmitToGame, setChessMoveToSubmitToGame] = useState<{
+		piece: string
+		pieceName: string
+		coord: string
+		readyToSubmit: boolean
+	}>({
 		piece: '',
 		pieceName: '',
 		coord: '',
@@ -132,16 +127,6 @@ export default function Experience() {
 				<Physics debug>
 					<gridHelper args={[20, 20, 0xff0000, 'teal']} />
 
-					<BlackPawn
-						xzPositionToMovePiece={xzPositionToMovePiece}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
-
-					<WhiteRook
-						xzPositionToMovePiece={xzPositionToMovePiece}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
-
 					<RankOne
 						tileBlack={tileBlack}
 						tileWhite={tileWhite}
@@ -157,7 +142,6 @@ export default function Experience() {
 						tileWhite={tileWhite}
 						rowHeight={rowHeight}
 						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setxzPositionToMovePiece={setxzPositionToMovePiece}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 					/>
 					<RankFour
@@ -165,7 +149,6 @@ export default function Experience() {
 						tileWhite={tileWhite}
 						rowHeight={rowHeight}
 						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setxzPositionToMovePiece={setxzPositionToMovePiece}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 					/>
 					<RankFive
@@ -173,7 +156,6 @@ export default function Experience() {
 						tileWhite={tileWhite}
 						rowHeight={rowHeight}
 						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setxzPositionToMovePiece={setxzPositionToMovePiece}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 					/>
 					<RankSix
