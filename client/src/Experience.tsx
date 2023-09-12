@@ -14,6 +14,7 @@ import { ChessGame } from './ChessGame'
 import { LightAndControls } from './LightAndControls'
 import Board from './Board'
 import { Loader } from './Loader'
+import { PresentationControls, TransformControls } from '@react-three/drei'
 
 export default function Experience() {
 	const chessTileGeometry = useMemo(() => {
@@ -168,7 +169,7 @@ export default function Experience() {
 		whiteBKnight: squareToPositionMap.b1,
 		whiteGKnight: squareToPositionMap.g1,
 		whiteBishopwhite: squareToPositionMap.c1,
-		whiteBishopWhite: squareToPositionMap.f1,
+		whiteBishopBlack: squareToPositionMap.f1,
 		whiteARook: squareToPositionMap.a1,
 		whiteHRook: squareToPositionMap.h1,
 		whiteAPawn: squareToPositionMap.a2,
@@ -198,13 +199,10 @@ export default function Experience() {
 	})
 
 	useEffect(() => {
-		console.log(globalBoardPositions)
 		console.log(chessMoveToSubmitToGame)
-	}, [globalBoardPositions])
+	}, [chessMoveToSubmitToGame])
 	return (
 		<>
-			<Perf />
-			<LightAndControls />
 			<ChessGame
 				globalBoardPositions={globalBoardPositions}
 				setGlobalBoardPositions={setGlobalBoardPositions}
@@ -213,60 +211,63 @@ export default function Experience() {
 				squareToPositionMap={squareToPositionMap}
 			/>
 			<Suspense fallback={<Loader />}>
-				<Board
-					globalBoardPositions={globalBoardPositions}
-					setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-				/>
-				<Physics debug>
-					<gridHelper args={[20, 20, 0xff0000, 'teal']} />
+				<LightAndControls />
+				<PresentationControls>
+					<Board
+						globalBoardPositions={globalBoardPositions}
+						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+					/>
+					<Physics>
+						{/* <gridHelper args={[20, 20, 0xff0000, 'teal']} /> */}
 
-					<RankOne
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-					/>
-					<RankTwo
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-					/>
-					<RankThree
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
-					<RankFour
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
-					<RankFive
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
-					<RankSix
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-					/>
-					<RankSeven
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-					/>
-					<RankEight
-						tileBlack={tileBlack}
-						tileWhite={tileWhite}
-						rowHeight={rowHeight}
-					/>
-				</Physics>
+						<RankOne
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+						/>
+						<RankTwo
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+						/>
+						<RankThree
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+						/>
+						<RankFour
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+						/>
+						<RankFive
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+						/>
+						<RankSix
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+						/>
+						<RankSeven
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+						/>
+						<RankEight
+							tileBlack={tileBlack}
+							tileWhite={tileWhite}
+							rowHeight={rowHeight}
+						/>
+					</Physics>
+				</PresentationControls>
 			</Suspense>
 			{/* <mesh onClick={startNewGame}>
 				<boxGeometry />

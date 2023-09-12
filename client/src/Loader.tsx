@@ -9,6 +9,10 @@ export const Loader = () => {
 			wrapperClass='loading'
 		>
 			<h2>{Math.floor(progress)}%</h2>
+			<img
+				src='./spinner.gif'
+				alt='loading'
+			/>
 		</Html>
 	)
 }

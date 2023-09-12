@@ -25,6 +25,24 @@ export const ChessGame: FC<IChessGame> = ({
 }) => {
 	const [chessGame] = useState(new Chess())
 
+	function findKeyByValue(
+		obj: {
+			[x: string]: { toString: () => any }
+			hasOwnProperty: (arg0: string) => any
+		},
+		targetValue: { toString: () => any }
+	) {
+		for (const key in obj) {
+			if (
+				obj.hasOwnProperty(key) &&
+				obj[key].toString() === targetValue.toString()
+			) {
+				return key
+			}
+		}
+		return null // If the value is not found in any key
+	}
+
 	useEffect(() => {
 		console.log(chessGame.turn())
 
@@ -32,7 +50,17 @@ export const ChessGame: FC<IChessGame> = ({
 			chessMoveToSubmitToGame.readyToSubmit &&
 			chessMoveToSubmitToGame.pieceName !== ''
 		) {
-			let move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
+			let move: string
+			if (chessMoveToSubmitToGame.piece === 'P') {
+				let currentPosition =
+					globalBoardPositions[chessMoveToSubmitToGame.pieceName]
+				console.log(currentPosition, 'piece current pos')
+				let key = findKeyByValue(squareToPositionMap, currentPosition)
+				console.log(key)
+				move = `${chessMoveToSubmitToGame.piece}${key}-${chessMoveToSubmitToGame.coord}`
+			} else {
+				move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
+			}
 
 			console.log('Move to submit is:', move)
 
