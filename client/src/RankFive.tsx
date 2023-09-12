@@ -11,6 +11,7 @@ interface IRank {
 			pieceName: string
 			coord: string
 			readyToSubmit: boolean
+			pieceColor: string
 		}>
 	>
 	chessMoveToSubmitToGame: {
@@ -18,6 +19,7 @@ interface IRank {
 		pieceName: string
 		coord: string
 		readyToSubmit: boolean
+		pieceColor: string
 	}
 }
 export const RankFive: FC<IRank> = ({
@@ -35,8 +37,7 @@ export const RankFive: FC<IRank> = ({
 					position={[-3.5, rowHeight, -0.5]}
 					onClick={() => {
 						setChessMoveToSubmitToGame({
-							piece: chessMoveToSubmitToGame.piece,
-							pieceName: chessMoveToSubmitToGame.pieceName,
+							...chessMoveToSubmitToGame,
 							coord: 'a5',
 							readyToSubmit: true,
 						})

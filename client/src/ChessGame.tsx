@@ -7,6 +7,7 @@ interface IChessGame {
 		pieceName: string
 		coord: string
 		readyToSubmit: boolean
+		pieceColor: string
 	}
 	setChessMoveToSubmitToGame: any
 	globalBoardPositions: {
@@ -25,6 +26,8 @@ export const ChessGame: FC<IChessGame> = ({
 	const [chessGame] = useState(new Chess())
 
 	useEffect(() => {
+		console.log(chessGame.turn())
+
 		if (
 			chessMoveToSubmitToGame.readyToSubmit &&
 			chessMoveToSubmitToGame.pieceName !== ''
@@ -32,6 +35,20 @@ export const ChessGame: FC<IChessGame> = ({
 			let move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
 
 			console.log('Move to submit is:', move)
+
+			if (chessGame.turn() !== chessMoveToSubmitToGame.pieceColor) {
+				console.log('not your turn')
+				//Reset chess move state
+				setChessMoveToSubmitToGame({
+					piece: '',
+					pieceName: '',
+					coord: '',
+					readyToSubmit: false,
+					turnColor: chessMoveToSubmitToGame.pieceColor,
+				})
+				return
+			}
+
 			try {
 				if (chessGame.move(move) !== null) {
 					//Move physical piece
@@ -47,6 +64,7 @@ export const ChessGame: FC<IChessGame> = ({
 						pieceName: '',
 						coord: '',
 						readyToSubmit: false,
+						pieceColor: chessGame.turn(),
 					})
 				}
 			} catch (error) {
@@ -57,6 +75,7 @@ export const ChessGame: FC<IChessGame> = ({
 					pieceName: '',
 					coord: '',
 					readyToSubmit: false,
+					pieceColor: chessMoveToSubmitToGame.pieceColor,
 				})
 				console.log(chessGame.ascii())
 			}

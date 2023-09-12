@@ -72,8 +72,7 @@ export const RankFour: FC<IRank> = ({
 				<mesh
 					onClick={() => {
 						setChessMoveToSubmitToGame({
-							piece: chessMoveToSubmitToGame.piece,
-							pieceName: chessMoveToSubmitToGame.pieceName,
+							...chessMoveToSubmitToGame,
 							coord: 'a4',
 							readyToSubmit: true,
 						})

@@ -105,9 +105,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
-						name='BlackKing'
+						name='blackKing'
 						geometry={nodes.Object_8.geometry}
 						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'K',
+								pieceName: 'blackKing',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
 						position={[
 							globalBoardPositions.blackKing[0],
 							0.616,
@@ -119,9 +129,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
-						name='BlackQueen'
+						name='blackQueen'
 						geometry={nodes.Object_10.geometry}
 						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'Q',
+								pieceName: 'blackQueen',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
 						position={[
 							globalBoardPositions.blackQueen[0],
 							0.444,
@@ -133,44 +153,115 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackBishopBlack'
 						geometry={nodes.Object_12.geometry}
 						material={materials['Figures.Black']}
-						position={[0.761, 0.302, 1.772]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'B',
+								pieceName: 'blackBishopBlack',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackBishopBlack[0],
+							0.302,
+							globalBoardPositions.blackBishopBlack[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackBKnight'
 						geometry={nodes.Object_14.geometry}
 						material={materials['Figures.Black']}
-						position={[1.275, 0.304, 1.787]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'N',
+								pieceName: 'blackBKnight',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackBKnight[0],
+							0.304,
+							globalBoardPositions.blackBKnight[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackARook'
 						geometry={nodes.Object_16.geometry}
 						material={materials['Figures.Black']}
-						position={[1.775, 0.246, 1.773]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'R',
+								pieceName: 'blackARook',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackARook[0],
+							0.246,
+							globalBoardPositions.blackARook[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackAPawn'
 						geometry={nodes.Object_18.geometry}
 						material={materials['Figures.Black']}
-						position={[1.776, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackAPawn[0],
+							0.165,
+							globalBoardPositions.blackAPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackBPawn'
 						geometry={nodes.Object_20.geometry}
 						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackBPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
 						position={[1.276, 0.165, 1.292]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -178,71 +269,187 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackCPawn'
 						geometry={nodes.Object_22.geometry}
 						material={materials['Figures.Black']}
-						position={[0.776, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackCPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackCPawn[0],
+							0.165,
+							globalBoardPositions.blackCPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackDPawn'
 						geometry={nodes.Object_24.geometry}
 						material={materials['Figures.Black']}
-						position={[0.276, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackDPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackDPawn[0],
+							0.165,
+							globalBoardPositions.blackDPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackEPawn'
 						geometry={nodes.Object_26.geometry}
 						material={materials['Figures.Black']}
-						position={[-0.264, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackEPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackEPawn[0],
+							0.165,
+							globalBoardPositions.blackEPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackFPawn'
 						geometry={nodes.Object_28.geometry}
 						material={materials['Figures.Black']}
-						position={[-0.764, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackFPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackFPawn[0],
+							0.165,
+							globalBoardPositions.blackFPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackGPawn'
 						geometry={nodes.Object_30.geometry}
 						material={materials['Figures.Black']}
-						position={[-1.264, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackGPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackGPawn[0],
+							0.165,
+							globalBoardPositions.blackGPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackHPawn'
 						geometry={nodes.Object_32.geometry}
 						material={materials['Figures.Black']}
-						position={[-1.764, 0.165, 1.292]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'blackHPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackHPawn[0],
+							0.165,
+							globalBoardPositions.blackHPawn[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.025, 0.025, 0.025]}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='blackBishopWhite'
 						geometry={nodes.Object_34.geometry}
 						material={materials['Figures.Black']}
-						position={[-0.769, 0.302, 1.792]}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'B',
+								pieceName: 'blackBishopWhite',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackBishopWhite[0],
+							0.302,
+							globalBoardPositions.blackBishopWhite[1],
+						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
 					/>
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_36.geometry}
 						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.255, 0.304, 1.807]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
@@ -250,8 +457,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_38.geometry}
 						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.755, 0.246, 1.793]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={0.034}
@@ -259,8 +477,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_40.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[0.242, 0.616, -1.773]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.034, 0.034, 0.034]}
@@ -268,8 +497,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_42.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-0.261, 0.444, -1.773]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.034, 0.034, 0.034]}
@@ -277,8 +517,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_44.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-0.766, 0.302, -1.772]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -286,8 +537,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_46.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.28, 0.304, -1.787]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -295,8 +557,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_48.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.78, 0.246, -1.773]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -304,8 +577,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_50.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.781, 0.165, -1.253]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -313,8 +597,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_52.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[0.784, 0.302, -1.772]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -322,8 +617,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_54.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[1.27, 0.304, -1.787]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -331,8 +637,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_56.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[1.79, 0.246, -1.773]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={0.034}
@@ -340,8 +657,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_58.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-1.281, 0.165, -1.253]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -349,8 +677,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_60.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-0.781, 0.165, -1.253]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -358,8 +697,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_62.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[-0.241, 0.165, -1.273]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -367,8 +717,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_64.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[0.259, 0.165, -1.273]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -376,8 +737,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_66.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[0.759, 0.165, -1.273]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -385,8 +757,19 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
+						name='whiteAPawn'
 						geometry={nodes.Object_68.geometry}
 						material={materials['Figures.White']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: '',
+								pieceName: 'whiteAPawn',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'w',
+							})
+						}}
 						position={[1.259, 0.165, -1.273]}
 						rotation={[Math.PI / 2, 0, 0]}
 						scale={[-0.025, 0.025, 0.025]}
@@ -411,6 +794,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 								pieceName: 'whiteAPawn',
 								coord: '',
 								readyToSubmit: false,
+								pieceColor: 'w',
 							})
 						}}
 					/>

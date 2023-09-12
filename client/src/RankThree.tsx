@@ -30,8 +30,7 @@ export const RankThree: FC<IRank> = ({
 				<mesh
 					onClick={() => {
 						setChessMoveToSubmitToGame({
-							piece: chessMoveToSubmitToGame.piece,
-							pieceName: chessMoveToSubmitToGame.pieceName,
+							...chessMoveToSubmitToGame,
 							coord: 'a3',
 							readyToSubmit: true,
 						})
@@ -48,8 +47,7 @@ export const RankThree: FC<IRank> = ({
 				<mesh
 					onClick={() => {
 						setChessMoveToSubmitToGame({
-							piece: chessMoveToSubmitToGame.piece,
-							pieceName: chessMoveToSubmitToGame.pieceName,
+							...chessMoveToSubmitToGame,
 							coord: 'b3',
 							readyToSubmit: true,
 						})
