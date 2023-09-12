@@ -36,7 +36,7 @@ const WhitePawn: FC<IMoveMechanics> = ({
 				onClick={(e) => {
 					e.stopPropagation()
 					setIsReadyToMove(!isReadyToMove)
-					setChessMoveToSubmitToGame({ piece: '', coord: '', readyToSubmit: false })
+					setChessMoveToSubmitToGame({ piece: '', coord: '', readyToSubmit: true })
 				}}
 				castShadow
 			>

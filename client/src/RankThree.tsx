@@ -5,10 +5,10 @@ interface IRank {
 	tileBlack: any
 	tileWhite: any
 	rowHeight: number
-	setxzPositionToMovePiece: any
 	setChessMoveToSubmitToGame: any
 	chessMoveToSubmitToGame: {
 		piece: string
+		pieceName: string
 		coord: string
 		readyToSubmit: boolean
 	}
@@ -17,7 +17,6 @@ export const RankThree: FC<IRank> = ({
 	tileBlack,
 	tileWhite,
 	rowHeight = -0.1,
-	setxzPositionToMovePiece,
 	chessMoveToSubmitToGame,
 	setChessMoveToSubmitToGame,
 }) => {
@@ -26,42 +25,75 @@ export const RankThree: FC<IRank> = ({
 			<RigidBody
 				name='a3'
 				type='fixed'
+				position={[-3.5, rowHeight, 1.5]}
 			>
 				<mesh
-					position={[-3.5, rowHeight, 1.5]}
 					onClick={() => {
-						setxzPositionToMovePiece({ x: -3.5, z: 1.5 })
 						setChessMoveToSubmitToGame({
 							piece: chessMoveToSubmitToGame.piece,
+							pieceName: chessMoveToSubmitToGame.pieceName,
 							coord: 'a3',
 							readyToSubmit: true,
 						})
-						console.log('click')
+						console.log('click on a3')
 					}}
 				>
 					{tileBlack}
 				</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[-2.5, rowHeight, 1.5]}>{tileWhite}</mesh>
+			<RigidBody
+				position={[-2.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh
+					onClick={() => {
+						setChessMoveToSubmitToGame({
+							piece: chessMoveToSubmitToGame.piece,
+							pieceName: chessMoveToSubmitToGame.pieceName,
+							coord: 'b3',
+							readyToSubmit: true,
+						})
+						console.log('click on b3')
+					}}
+				>
+					{tileWhite}
+				</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[-1.5, rowHeight, 1.5]}>{tileBlack}</mesh>
+			<RigidBody
+				position={[-1.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileBlack}</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[-0.5, rowHeight, 1.5]}>{tileWhite}</mesh>
+			<RigidBody
+				position={[-0.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileWhite}</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[0.5, rowHeight, 1.5]}>{tileBlack}</mesh>
+			<RigidBody
+				position={[0.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileBlack}</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[1.5, rowHeight, 1.5]}>{tileWhite}</mesh>
+			<RigidBody
+				position={[1.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileWhite}</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[2.5, rowHeight, 1.5]}>{tileBlack}</mesh>
+			<RigidBody
+				position={[2.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileBlack}</mesh>
 			</RigidBody>
-			<RigidBody type='fixed'>
-				<mesh position={[3.5, rowHeight, 1.5]}>{tileWhite}</mesh>
+			<RigidBody
+				position={[3.5, rowHeight, 1.5]}
+				type='fixed'
+			>
+				<mesh>{tileWhite}</mesh>
 			</RigidBody>
 		</>
 	)

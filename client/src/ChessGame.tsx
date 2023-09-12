@@ -4,29 +4,63 @@ import { Chess } from 'chess.js'
 interface IChessGame {
 	chessMoveToSubmitToGame: {
 		piece: string
+		pieceName: string
 		coord: string
 		readyToSubmit: boolean
 	}
 	setChessMoveToSubmitToGame: any
+	globalBoardPositions: {
+		[key: string]: number[]
+	}
+	setGlobalBoardPositions: any
+	squareToPositionMap: { [key: string]: number[] }
 }
 export const ChessGame: FC<IChessGame> = ({
 	chessMoveToSubmitToGame,
 	setChessMoveToSubmitToGame,
+	globalBoardPositions,
+	setGlobalBoardPositions,
+	squareToPositionMap,
 }) => {
 	const [chessGame] = useState(new Chess())
 
 	useEffect(() => {
-		if (chessMoveToSubmitToGame.readyToSubmit) {
+		if (
+			chessMoveToSubmitToGame.readyToSubmit &&
+			chessMoveToSubmitToGame.pieceName !== ''
+		) {
+			let move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
+
+			console.log('Move to submit is:', move)
 			try {
-				let move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
-				console.log(move)
-				chessGame.move(move)
-				console.log(chessGame.ascii())
-				setChessMoveToSubmitToGame({ coord: '', readyToSubmit: false })
+				if (chessGame.move(move) !== null) {
+					//Move physical piece
+					setGlobalBoardPositions({
+						...globalBoardPositions,
+						[chessMoveToSubmitToGame.pieceName]:
+							squareToPositionMap[chessMoveToSubmitToGame.coord],
+					})
+
+					//Reset chess move state
+					setChessMoveToSubmitToGame({
+						piece: '',
+						pieceName: '',
+						coord: '',
+						readyToSubmit: false,
+					})
+				}
 			} catch (error) {
-				console.log('disallowed move you cunt')
+				window.alert('invalid move you fool, try again.')
+				//Reset chess move state
+				setChessMoveToSubmitToGame({
+					piece: '',
+					pieceName: '',
+					coord: '',
+					readyToSubmit: false,
+				})
 				console.log(chessGame.ascii())
 			}
+			console.log(chessGame.ascii())
 		}
 	}, [chessMoveToSubmitToGame])
 

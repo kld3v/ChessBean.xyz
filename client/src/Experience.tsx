@@ -11,11 +11,13 @@ import { RankEight } from './RankEight'
 import WhitePawn from './WhitePawn'
 import { Perf } from 'r3f-perf'
 import * as THREE from 'three'
-import { OrbitControls } from '@react-three/drei'
 import { ChessGame } from './ChessGame'
 import chessObject from './chessObject'
 import WhiteRook from './WhiteRook'
 import BlackPawn from './BlackPawn'
+import { LightAndControls } from './LightAndControls'
+import Board from './Board'
+import { Vector3 } from '@react-three/fiber'
 
 export default function Experience() {
 	const chessTileGeometry = useMemo(() => {
@@ -23,12 +25,22 @@ export default function Experience() {
 		return chessTileGeometry
 	}, [])
 	const chessWhiteMaterial = useMemo(() => {
-		let chessWhiteMaterial = new THREE.MeshStandardMaterial({ color: 'white' })
+		// let chessWhiteMaterial = new THREE.MeshStandardMaterial({ color: 'white' })
+		let chessWhiteMaterial = new THREE.MeshBasicMaterial({
+			transparent: true,
+			opacity: 0,
+			color: 0xffffff,
+		})
 		return chessWhiteMaterial
 	}, [])
 	const chessBlackMaterial = useMemo(() => {
-		let chessTileGeometry = new THREE.MeshStandardMaterial({ color: 'black' })
-		return chessTileGeometry
+		// let chessBlackMaterial = new THREE.MeshStandardMaterial({ color: 'black' })
+		let chessBlackMaterial = new THREE.MeshBasicMaterial({
+			transparent: true,
+			opacity: 0,
+			color: 0xffffff,
+		})
+		return chessBlackMaterial
 	}, [])
 
 	const tileBlack = (
@@ -78,8 +90,24 @@ export default function Experience() {
 
 	const [chessMoveToSubmitToGame, setChessMoveToSubmitToGame] = useState({
 		piece: '',
+		pieceName: '',
 		coord: '',
 		readyToSubmit: false,
+	})
+
+	const [squareToPositionMap] = useState<{ [key: string]: number[] }>({
+		a2: [1.799, -1.273],
+		a3: [1.799, -0.773],
+		d8: [0.256, 1.773],
+		e8: [-0.247, 1.773],
+	})
+
+	const [globalBoardPositions, setGlobalBoardPositions] = useState<{
+		[key: string]: number[]
+	}>({
+		whiteAPawn: squareToPositionMap.a2,
+		blackKing: squareToPositionMap.e8,
+		blackQueen: squareToPositionMap.d8,
 	})
 
 	useEffect(() => {
@@ -88,20 +116,17 @@ export default function Experience() {
 	return (
 		<>
 			<Perf />
-			<OrbitControls
-				enablePan={true}
-				enableRotate={true}
+			<LightAndControls />
+			<Board
+				globalBoardPositions={globalBoardPositions}
+				setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 			/>
-			<directionalLight
-				castShadow
-				position={[1, 10, 3]}
-				intensity={1.5}
-			/>
-
-			<ambientLight intensity={0.3} />
 			<ChessGame
+				globalBoardPositions={globalBoardPositions}
+				setGlobalBoardPositions={setGlobalBoardPositions}
 				chessMoveToSubmitToGame={chessMoveToSubmitToGame}
 				setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+				squareToPositionMap={squareToPositionMap}
 			/>
 			<Suspense>
 				<Physics debug>
@@ -111,10 +136,7 @@ export default function Experience() {
 						xzPositionToMovePiece={xzPositionToMovePiece}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 					/>
-					<WhitePawn
-						xzPositionToMovePiece={xzPositionToMovePiece}
-						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
-					/>
+
 					<WhiteRook
 						xzPositionToMovePiece={xzPositionToMovePiece}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
