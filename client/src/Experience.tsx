@@ -8,13 +8,12 @@ import { RankFive } from './RankFive'
 import { RankSix } from './RankSix'
 import { RankSeven } from './RankSeven'
 import { RankEight } from './RankEight'
-import { Perf } from 'r3f-perf'
 import * as THREE from 'three'
 import { ChessGame } from './ChessGame'
 import { LightAndControls } from './LightAndControls'
 import Board from './Board'
 import { Loader } from './Loader'
-import { PresentationControls, TransformControls } from '@react-three/drei'
+import { PresentationControls } from '@react-three/drei'
 
 export default function Experience() {
 	const chessTileGeometry = useMemo(() => {
