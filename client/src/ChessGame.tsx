@@ -15,6 +15,9 @@ interface IChessGame {
 	}
 	setGlobalBoardPositions: any
 	squareToPositionMap: { [key: string]: number[] }
+	originalBoard: {
+		[key: string]: number[]
+	}
 }
 export const ChessGame: FC<IChessGame> = ({
 	chessMoveToSubmitToGame,
@@ -22,6 +25,7 @@ export const ChessGame: FC<IChessGame> = ({
 	globalBoardPositions,
 	setGlobalBoardPositions,
 	squareToPositionMap,
+	originalBoard,
 }) => {
 	const [chessGame] = useState(new Chess())
 
@@ -97,6 +101,21 @@ export const ChessGame: FC<IChessGame> = ({
 						readyToSubmit: false,
 						pieceColor: chessGame.turn(),
 					})
+
+					if (chessGame.isGameOver()) {
+						if (chessGame.isDraw() || chessGame.isStalemate()) {
+							window.alert('Game is a tie')
+						} else {
+							const winner = `winner is ${
+								chessGame.turn() === 'b' ? 'white' : 'black'
+							}`
+							window.alert(winner)
+						}
+						setGlobalBoardPositions({
+							...originalBoard,
+						})
+						chessGame.reset()
+					}
 				}
 			} catch (error) {
 				window.alert('invalid move you fool, try again.')

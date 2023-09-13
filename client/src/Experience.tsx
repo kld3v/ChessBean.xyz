@@ -196,7 +196,7 @@ export default function Experience() {
 		blackGPawn: squareToPositionMap.g7,
 		blackHPawn: squareToPositionMap.h7,
 	})
-
+	const originalBoard = useMemo(() => globalBoardPositions, [])
 	useEffect(() => {
 		console.log(chessMoveToSubmitToGame)
 	}, [chessMoveToSubmitToGame])
@@ -208,6 +208,7 @@ export default function Experience() {
 				chessMoveToSubmitToGame={chessMoveToSubmitToGame}
 				setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 				squareToPositionMap={squareToPositionMap}
+				originalBoard={originalBoard}
 			/>
 			<Suspense fallback={<Loader />}>
 				<LightAndControls />
@@ -215,6 +216,7 @@ export default function Experience() {
 					<Board
 						globalBoardPositions={globalBoardPositions}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
+						chessMoveToSubmitToGame={chessMoveToSubmitToGame}
 					/>
 					<Physics>
 						{/* <gridHelper args={[20, 20, 0xff0000, 'teal']} /> */}
