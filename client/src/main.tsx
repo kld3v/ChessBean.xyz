@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			fov: 45,
 			near: 0.1,
 			far: 2000,
-			position: [0, 12, 14],
+			position: [0, 8, 14],
 		}}
 	>
 		<Experience />

@@ -211,7 +211,7 @@ export default function Experience() {
 			/>
 			<Suspense fallback={<Loader />}>
 				<LightAndControls />
-				<PresentationControls>
+				<PresentationControls global>
 					<Board
 						globalBoardPositions={globalBoardPositions}
 						setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}

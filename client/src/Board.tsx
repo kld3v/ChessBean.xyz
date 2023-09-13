@@ -231,7 +231,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackAPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -255,7 +255,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackBPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -279,7 +279,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackCPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -303,7 +303,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackDPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -327,7 +327,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackEPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -351,7 +351,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackFPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -375,7 +375,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackGPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -399,7 +399,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'blackHPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -471,11 +471,11 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'R',
 								pieceName: 'blackHRook',
 								coord: '',
 								readyToSubmit: false,
-								pieceColor: 'w',
+								pieceColor: 'b',
 							})
 						}}
 						position={[
@@ -543,7 +543,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'B',
 								pieceName: 'whiteBishopBlack',
 								coord: '',
 								readyToSubmit: false,
@@ -615,7 +615,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteHPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -711,7 +711,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteGPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -735,7 +735,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteFPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -759,7 +759,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteEPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -783,7 +783,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteDPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -807,7 +807,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteCPawn',
 								coord: '',
 								readyToSubmit: false,
@@ -831,7 +831,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						onClick={(e) => {
 							e.stopPropagation()
 							setChessMoveToSubmitToGame({
-								piece: '',
+								piece: 'P',
 								pieceName: 'whiteBPawn',
 								coord: '',
 								readyToSubmit: false,
