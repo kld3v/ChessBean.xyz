@@ -50,6 +50,7 @@ export const ChessGame: FC<IChessGame> = ({
 			chessMoveToSubmitToGame.readyToSubmit &&
 			chessMoveToSubmitToGame.pieceName !== ''
 		) {
+			// Handle Pawn moving two squares
 			let move: string
 			if (chessMoveToSubmitToGame.piece === 'P') {
 				let currentPosition =
@@ -65,7 +66,9 @@ export const ChessGame: FC<IChessGame> = ({
 			console.log('Move to submit is:', move)
 
 			if (chessGame.turn() !== chessMoveToSubmitToGame.pieceColor) {
-				console.log('not your turn')
+				chessGame.turn() === 'b'
+					? window.alert("it's black's turn")
+					: window.alert("it's white's turn")
 				//Reset chess move state
 				setChessMoveToSubmitToGame({
 					piece: '',

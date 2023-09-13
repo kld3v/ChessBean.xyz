@@ -5,62 +5,45 @@ interface IRank {
 	tileBlack: any
 	tileWhite: any
 	rowHeight: number
+	setChessMoveToSubmitToGame: any
+	chessMoveToSubmitToGame: {
+		piece: string
+		pieceName: string
+		coord: string
+		readyToSubmit: boolean
+	}
 }
 export const RankSeven: FC<IRank> = ({
 	tileBlack,
 	tileWhite,
 	rowHeight = -0.1,
+	chessMoveToSubmitToGame,
+	setChessMoveToSubmitToGame,
 }) => {
-	return (
-		<>
-			<RigidBody
-				position={[-3.5, rowHeight, -2.5]}
-				type='fixed'
+	const positions = [-3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5]
+	const coords = ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']
+
+	const renderBody = positions.map((position, index) => (
+		<RigidBody
+			key={index}
+			name={coords[index]}
+			type='fixed'
+			position={[position, rowHeight, -2.5]}
+		>
+			<mesh
+				onClick={() => {
+					setChessMoveToSubmitToGame({
+						...chessMoveToSubmitToGame,
+						coord: coords[index],
+						readyToSubmit: true,
+					})
+					console.log('clicked on', coords[index])
+				}}
 			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-2.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-1.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-0.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[0.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[1.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[2.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[3.5, rowHeight, -2.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-		</>
-	)
+				{index % 2 === 0 ? tileBlack : tileWhite}
+			</mesh>
+		</RigidBody>
+	))
+
+	return renderBody
 }

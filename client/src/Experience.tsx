@@ -34,7 +34,7 @@ export default function Experience() {
 		let chessBlackMaterial = new THREE.MeshBasicMaterial({
 			transparent: true,
 			opacity: 0,
-			color: 0xffffff,
+			color: 0x000000,
 		})
 		return chessBlackMaterial
 	}, [])
@@ -223,11 +223,15 @@ export default function Experience() {
 							tileBlack={tileBlack}
 							tileWhite={tileWhite}
 							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 						/>
 						<RankTwo
 							tileBlack={tileBlack}
 							tileWhite={tileWhite}
 							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 						/>
 						<RankThree
 							tileBlack={tileBlack}
@@ -254,16 +258,22 @@ export default function Experience() {
 							tileBlack={tileBlack}
 							tileWhite={tileWhite}
 							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 						/>
 						<RankSeven
 							tileBlack={tileBlack}
 							tileWhite={tileWhite}
 							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 						/>
 						<RankEight
 							tileBlack={tileBlack}
 							tileWhite={tileWhite}
 							rowHeight={rowHeight}
+							chessMoveToSubmitToGame={chessMoveToSubmitToGame}
+							setChessMoveToSubmitToGame={setChessMoveToSubmitToGame}
 						/>
 					</Physics>
 				</PresentationControls>

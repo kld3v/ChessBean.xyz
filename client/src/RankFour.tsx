@@ -20,68 +20,30 @@ export const RankFour: FC<IRank> = ({
 	chessMoveToSubmitToGame,
 	setChessMoveToSubmitToGame,
 }) => {
-	return (
-		<>
-			<RigidBody
-				position={[3.5, rowHeight, 0.5]}
-				type='fixed'
+	const positions = [-3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5]
+	const coords = ['a4', 'b4', 'c4', 'd4', 'e4', 'f4', 'g4', 'h4']
+
+	const renderBody = positions.map((position, index) => (
+		<RigidBody
+			key={index}
+			name={coords[index]}
+			type='fixed'
+			position={[position, rowHeight, 0.5]}
+		>
+			<mesh
+				onClick={() => {
+					setChessMoveToSubmitToGame({
+						...chessMoveToSubmitToGame,
+						coord: coords[index],
+						readyToSubmit: true,
+					})
+					console.log('clicked on', coords[index])
+				}}
 			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[2.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[1.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[0.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-0.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-1.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-2.5, rowHeight, 0.5]}
-				type='fixed'
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				position={[-3.5, rowHeight, 0.5]}
-				type='fixed'
-				name='a4'
-			>
-				<mesh
-					onClick={() => {
-						setChessMoveToSubmitToGame({
-							...chessMoveToSubmitToGame,
-							coord: 'a4',
-							readyToSubmit: true,
-						})
-						console.log('click')
-					}}
-				>
-					{tileWhite}
-				</mesh>
-			</RigidBody>
-		</>
-	)
+				{index % 2 === 0 ? tileWhite : tileBlack}
+			</mesh>
+		</RigidBody>
+	))
+
+	return renderBody
 }

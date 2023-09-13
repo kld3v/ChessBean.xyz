@@ -105,32 +105,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					<mesh
 						castShadow
 						receiveShadow
-						name='blackKing'
-						geometry={nodes.Object_8.geometry}
-						material={materials['Figures.Black']}
-						onClick={(e) => {
-							e.stopPropagation()
-							setChessMoveToSubmitToGame({
-								piece: 'K',
-								pieceName: 'blackKing',
-								coord: '',
-								readyToSubmit: false,
-								pieceColor: 'b',
-							})
-						}}
-						position={[
-							globalBoardPositions.blackKing[0],
-							0.616,
-							globalBoardPositions.blackKing[1],
-						]}
-						rotation={[Math.PI / 2, 0, -Math.PI]}
-						scale={[-0.034, 0.034, 0.034]}
-					/>
-					<mesh
-						castShadow
-						receiveShadow
 						name='blackQueen'
-						geometry={nodes.Object_10.geometry}
+						geometry={nodes.Object_8.geometry}
 						material={materials['Figures.Black']}
 						onClick={(e) => {
 							e.stopPropagation()
@@ -144,8 +120,32 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 						}}
 						position={[
 							globalBoardPositions.blackQueen[0],
-							0.444,
+							0.616,
 							globalBoardPositions.blackQueen[1],
+						]}
+						rotation={[Math.PI / 2, 0, -Math.PI]}
+						scale={[-0.034, 0.034, 0.034]}
+					/>
+					<mesh
+						castShadow
+						receiveShadow
+						name='blackKing'
+						geometry={nodes.Object_10.geometry}
+						material={materials['Figures.Black']}
+						onClick={(e) => {
+							e.stopPropagation()
+							setChessMoveToSubmitToGame({
+								piece: 'K',
+								pieceName: 'blackKing',
+								coord: '',
+								readyToSubmit: false,
+								pieceColor: 'b',
+							})
+						}}
+						position={[
+							globalBoardPositions.blackKing[0],
+							0.444,
+							globalBoardPositions.blackKing[1],
 						]}
 						rotation={[Math.PI / 2, 0, -Math.PI]}
 						scale={[-0.034, 0.034, 0.034]}

@@ -5,59 +5,45 @@ interface IRank {
 	tileBlack: any
 	tileWhite: any
 	rowHeight: number
+	setChessMoveToSubmitToGame: any
+	chessMoveToSubmitToGame: {
+		piece: string
+		pieceName: string
+		coord: string
+		readyToSubmit: boolean
+	}
 }
+export const RankTwo: FC<IRank> = ({
+	tileBlack,
+	tileWhite,
+	rowHeight = -0.1,
+	chessMoveToSubmitToGame,
+	setChessMoveToSubmitToGame,
+}) => {
+	const positions = [-3.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 3.5]
+	const coords = ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2']
 
-export const RankTwo: FC<IRank> = ({ tileBlack, tileWhite, rowHeight }) => {
-	return (
-		<>
-			<RigidBody
-				type='fixed'
-				position={[3.5, rowHeight, 2.5]}
+	const renderBody = positions.map((position, index) => (
+		<RigidBody
+			key={index}
+			name={coords[index]}
+			type='fixed'
+			position={[position, rowHeight, 2.5]}
+		>
+			<mesh
+				onClick={() => {
+					setChessMoveToSubmitToGame({
+						...chessMoveToSubmitToGame,
+						coord: coords[index],
+						readyToSubmit: true,
+					})
+					console.log('clicked on', coords[index])
+				}}
 			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[2.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[1.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[0.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[-0.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[-1.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[-2.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileBlack}</mesh>
-			</RigidBody>
-			<RigidBody
-				type='fixed'
-				position={[-3.5, rowHeight, 2.5]}
-			>
-				<mesh>{tileWhite}</mesh>
-			</RigidBody>
-		</>
-	)
+				{index % 2 === 0 ? tileWhite : tileBlack}
+			</mesh>
+		</RigidBody>
+	))
+
+	return renderBody
 }
