@@ -28,7 +28,12 @@ export const ChessGame: FC<IChessGame> = ({
 	originalBoard,
 }) => {
 	const [chessGame] = useState(new Chess())
-
+	const [fallSound] = useState(() => new Audio('./fall.mp3'))
+	const playAudio = () => {
+		fallSound.currentTime = 0
+		fallSound.volume = 0.1
+		fallSound.play()
+	}
 	function findKeyByValue(
 		obj: {
 			[x: string]: { toString: () => any }
@@ -79,7 +84,7 @@ export const ChessGame: FC<IChessGame> = ({
 					pieceName: '',
 					coord: '',
 					readyToSubmit: false,
-					turnColor: chessMoveToSubmitToGame.pieceColor,
+					pieceColor: chessMoveToSubmitToGame.pieceColor,
 				})
 				return
 			}
@@ -92,7 +97,7 @@ export const ChessGame: FC<IChessGame> = ({
 						[chessMoveToSubmitToGame.pieceName]:
 							squareToPositionMap[chessMoveToSubmitToGame.coord],
 					})
-
+					playAudio()
 					//Reset chess move state
 					setChessMoveToSubmitToGame({
 						piece: '',
@@ -103,7 +108,11 @@ export const ChessGame: FC<IChessGame> = ({
 					})
 
 					if (chessGame.isGameOver()) {
-						if (chessGame.isDraw() || chessGame.isStalemate()) {
+						if (
+							chessGame.isDraw() ||
+							chessGame.isStalemate() ||
+							chessGame.isThreefoldRepetition()
+						) {
 							window.alert('Game is a tie')
 						} else {
 							const winner = `winner is ${

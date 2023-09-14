@@ -11,6 +11,7 @@ interface IRank {
 		pieceName: string
 		coord: string
 		readyToSubmit: boolean
+		pieceColor: string
 	}
 }
 export const RankSix: FC<IRank> = ({

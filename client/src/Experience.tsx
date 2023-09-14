@@ -167,7 +167,7 @@ export default function Experience() {
 		whiteQueen: squareToPositionMap.d1,
 		whiteBKnight: squareToPositionMap.b1,
 		whiteGKnight: squareToPositionMap.g1,
-		whiteBishopwhite: squareToPositionMap.c1,
+		whiteBishopWhite: squareToPositionMap.c1,
 		whiteBishopBlack: squareToPositionMap.f1,
 		whiteARook: squareToPositionMap.a1,
 		whiteHRook: squareToPositionMap.h1,
