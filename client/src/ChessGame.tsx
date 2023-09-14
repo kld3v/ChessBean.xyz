@@ -1,20 +1,18 @@
 import { FC, useEffect, useState } from 'react'
 import { Chess } from 'chess.js'
-
+import { handleWorldPieceCaptureLogic } from './Methods'
+import {
+	IChessMoveToSubmitToGame,
+	IGlobalBoardPositions,
+	ISetChessMoveToSubmitToGame,
+	ISquareToPositionMap,
+} from './TypesAndInterfaces'
 interface IChessGame {
-	chessMoveToSubmitToGame: {
-		piece: string
-		pieceName: string
-		coord: string
-		readyToSubmit: boolean
-		pieceColor: string
-	}
-	setChessMoveToSubmitToGame: any
-	globalBoardPositions: {
-		[key: string]: number[]
-	}
+	chessMoveToSubmitToGame: IChessMoveToSubmitToGame
+	setChessMoveToSubmitToGame: ISetChessMoveToSubmitToGame
+	globalBoardPositions: IGlobalBoardPositions
 	setGlobalBoardPositions: any
-	squareToPositionMap: { [key: string]: number[] }
+	squareToPositionMap: ISquareToPositionMap
 	originalBoard: {
 		[key: string]: number[]
 	}
@@ -51,9 +49,11 @@ export const ChessGame: FC<IChessGame> = ({
 		}
 		return null // If the value is not found in any key
 	}
+	const [offBoardChessPositionBlack, setOffBoardChessPositionBlack] = useState(1)
+	const [offBoardChessPositionWhite, setOffBoardChessPositionWhite] = useState(1)
 
 	useEffect(() => {
-		console.log(chessGame.turn())
+		console.log('turn player:', chessGame.turn())
 
 		if (
 			chessMoveToSubmitToGame.readyToSubmit &&
@@ -66,7 +66,7 @@ export const ChessGame: FC<IChessGame> = ({
 					globalBoardPositions[chessMoveToSubmitToGame.pieceName]
 				console.log(currentPosition, 'piece current pos')
 				let key = findKeyByValue(squareToPositionMap, currentPosition)
-				console.log(key)
+				console.log(key, '<--- key is ')
 				move = `${chessMoveToSubmitToGame.piece}${key}-${chessMoveToSubmitToGame.coord}`
 			} else {
 				move = `${chessMoveToSubmitToGame.piece}${chessMoveToSubmitToGame.coord}`
@@ -74,6 +74,7 @@ export const ChessGame: FC<IChessGame> = ({
 
 			console.log('Move to submit is:', move)
 
+			// Handle wrong turn player move attempt
 			if (chessGame.turn() !== chessMoveToSubmitToGame.pieceColor) {
 				chessGame.turn() === 'b'
 					? window.alert("it's black's turn")
@@ -90,7 +91,18 @@ export const ChessGame: FC<IChessGame> = ({
 			}
 
 			try {
+				// Game state move made here
 				if (chessGame.move(move) !== null) {
+					handleWorldPieceCaptureLogic(
+						chessMoveToSubmitToGame,
+						globalBoardPositions,
+						squareToPositionMap,
+						offBoardChessPositionBlack,
+						setOffBoardChessPositionBlack,
+						offBoardChessPositionWhite,
+						setOffBoardChessPositionWhite
+					)
+
 					//Move physical piece
 					setGlobalBoardPositions({
 						...globalBoardPositions,
@@ -98,6 +110,7 @@ export const ChessGame: FC<IChessGame> = ({
 							squareToPositionMap[chessMoveToSubmitToGame.coord],
 					})
 					playAudio()
+
 					//Reset chess move state
 					setChessMoveToSubmitToGame({
 						piece: '',
@@ -138,7 +151,7 @@ export const ChessGame: FC<IChessGame> = ({
 				})
 				console.log(chessGame.ascii())
 			}
-			console.log(chessGame.ascii())
+			console.log(chessGame.ascii(), chessGame.history())
 		}
 	}, [chessMoveToSubmitToGame])
 
