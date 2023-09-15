@@ -43,3 +43,6 @@ export const handleWorldPieceCaptureLogic = (
 		}
 	}
 }
+
+//TODO #3
+export const handleEnPassant = () => {}

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Chess;
 
 namespace API;
@@ -16,9 +17,15 @@ public class ChessGame
         CurrentChessGame = new ChessBoard();
     }
     
+    public class Move
+    {
+        [Key]
+        public int Id { get; set; }
+        public string San { get; set; }
+    }
+ 
     public class MoveRequest
     {
-        public string San { get; set; } 
+        public string San { get; set; }
     }
-
 }

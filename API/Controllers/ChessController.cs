@@ -1,4 +1,4 @@
-using Chess;
+using API.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -8,30 +8,48 @@ namespace API.Controllers;
 public class ChessController : ControllerBase
 {
     private readonly ChessGame _chessGame;
-    public ChessController(ChessGame newGame)
+    private readonly ChessDbContext _context;
+    public ChessController(ChessGame newGame, ChessDbContext context)
     {
         _chessGame = newGame;
+        _context = context;
     }
     
     [HttpPost("move")]
-    public IActionResult MakeMove([FromBody] MoveRequest moveRequest)
+    public IActionResult MakeMove([FromBody] ChessGame.MoveRequest moveRequest)
     {
-        if (_chessGame.CurrentChessGame.IsValidMove(moveRequest.San))
+        try
         {
-            _chessGame.CurrentChessGame.Move(moveRequest.San);
-            return Ok(new { message = _chessGame.CurrentChessGame.ToPgn() });
+            if (_chessGame.CurrentChessGame.IsValidMove(moveRequest.San))
+            {
+                var move = new Move()
+                {
+                    San = moveRequest.San
+                };
+                _context.chessMoves.Add(move);
+                _context.SaveChanges();
+
+                _chessGame.CurrentChessGame.Move(moveRequest.San);
+                return Ok(new { message = _chessGame.CurrentChessGame.ToPgn() });
+            }
+            else
+            {
+                return BadRequest("Invalid move");
+            }
         }
+        catch (Exception e)
         {
-            return BadRequest(error: "invalid");
+            // Log the exception details
+            return StatusCode(500, "Internal server error");
         }
        
     }
 
-    [HttpGet("StartNewGame")]
-    public IActionResult StartNewGame()
+    [HttpGet("RestartGame")]
+    public IActionResult RestartGame()
     {
         _chessGame.CurrentChessGame.Clear();
-        return Ok(new {message = "Game Started"});
+        return Ok(new {message = "Game Restarted"});
     }
 
     [HttpGet("Pgn")]
@@ -64,7 +82,7 @@ public class ChessController : ControllerBase
         return Ok(_chessGame.CurrentChessGame.CapturedBlack);
     }
 
-    [HttpPost("Draw")]
+    [HttpPost("DeclareDraw")]
     public IActionResult DeclareDraw()
     {
         _chessGame.CurrentChessGame.Draw();
@@ -74,9 +92,6 @@ public class ChessController : ControllerBase
 
 }
 
-public class MoveRequest
-{
-    public string San { get; set; }
-}
+
 
 
