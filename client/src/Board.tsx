@@ -75,35 +75,18 @@ interface IPositions {
 }
 
 export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
-	const { nodes, materials } = useGLTF(
-		'./chess_board_and_figures.glb'
-	) as GLTFResult
+	const { nodes, materials } = useGLTF('./chess_board_and_figures.glb') as GLTFResult
 
 	const placeholderRef = useRef<THREE.Mesh>(null!)
 
-	const [globalRef, setglobalRef] =
-		useState<MutableRefObject<THREE.Mesh>>(placeholderRef)
+	const [globalRef, setglobalRef] = useState<MutableRefObject<THREE.Mesh>>(placeholderRef)
 
-	const pieceTypes = [
-		'King',
-		'Queen',
-		'BishopWhite',
-		'BishopBlack',
-		'BKnight',
-		'GKnight',
-		'HRook',
-		'ARook',
-		'APawn',
-		'BPawn',
-		'CPawn',
-		'DPawn',
-		'EPawn',
-		'FPawn',
-		'GPawn',
-		'HPawn',
-	]
+	const pieceTypes = ['King', 'Queen', 'BishopWhite', 'BishopBlack', 'BKnight', 'GKnight', 'HRook', 'ARook', 'APawn', 'BPawn', 'CPawn', 'DPawn', 'EPawn', 'FPawn', 'GPawn', 'HPawn']
 	const colors = ['black', 'white']
-
+	const geometryScaleTable = {
+		pieces: 0.034,
+		pawns: -0.025,
+	}
 	type IRefMap = {
 		[key: string]: React.MutableRefObject<THREE.Mesh>
 	}
@@ -115,11 +98,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 		})
 	})
 
-	const {
-		globalBoardPositions,
-		setChessMoveToSubmitToGame,
-		chessMoveToSubmitToGame,
-	} = props
+	const { globalBoardPositions, setChessMoveToSubmitToGame, chessMoveToSubmitToGame } = props
 
 	useEffect(() => {
 		if (chessMoveToSubmitToGame.pieceName === '') {
@@ -146,12 +125,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 8,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackQueen[0],
-				0.616,
-				globalBoardPositions.blackQueen[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackQueen[0], 0.616, globalBoardPositions.blackQueen[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackKing',
@@ -160,12 +135,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 10,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackKing[0],
-				0.444,
-				globalBoardPositions.blackKing[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackKing[0], 0.444, globalBoardPositions.blackKing[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackBishopBlack',
@@ -174,12 +145,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 12,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackBishopBlack[0],
-				0.302,
-				globalBoardPositions.blackBishopBlack[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackBishopBlack[0], 0.302, globalBoardPositions.blackBishopBlack[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackBishopWhite',
@@ -188,12 +155,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 12,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackBishopWhite[0],
-				0.302,
-				globalBoardPositions.blackBishopWhite[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackBishopWhite[0], 0.302, globalBoardPositions.blackBishopWhite[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackBKnight',
@@ -202,12 +165,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 14,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackBKnight[0],
-				0.304,
-				globalBoardPositions.blackBKnight[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackBKnight[0], 0.304, globalBoardPositions.blackBKnight[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackGKnight',
@@ -216,12 +175,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 14,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackGKnight[0],
-				0.304,
-				globalBoardPositions.blackGKnight[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackGKnight[0], 0.304, globalBoardPositions.blackGKnight[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackARook',
@@ -230,12 +185,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 16,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackARook[0],
-				0.246,
-				globalBoardPositions.blackARook[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackARook[0], 0.246, globalBoardPositions.blackARook[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackHRook',
@@ -244,12 +195,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 16,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackHRook[0],
-				0.246,
-				globalBoardPositions.blackHRook[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.blackHRook[0], 0.246, globalBoardPositions.blackHRook[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'blackAPawn',
@@ -258,12 +205,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 18,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackAPawn[0],
-				0.165,
-				globalBoardPositions.blackAPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackAPawn[0], 0.165, globalBoardPositions.blackAPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackBPawn',
@@ -272,12 +215,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 20,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackBPawn[0],
-				0.165,
-				globalBoardPositions.blackBPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackBPawn[0], 0.165, globalBoardPositions.blackBPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackCPawn',
@@ -286,12 +225,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 22,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackCPawn[0],
-				0.165,
-				globalBoardPositions.blackCPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackCPawn[0], 0.165, globalBoardPositions.blackCPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackDPawn',
@@ -300,12 +235,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 24,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackDPawn[0],
-				0.165,
-				globalBoardPositions.blackDPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackDPawn[0], 0.165, globalBoardPositions.blackDPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackEPawn',
@@ -314,12 +245,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 26,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackEPawn[0],
-				0.165,
-				globalBoardPositions.blackEPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackEPawn[0], 0.165, globalBoardPositions.blackEPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackFPawn',
@@ -328,12 +255,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 28,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackFPawn[0],
-				0.165,
-				globalBoardPositions.blackFPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackFPawn[0], 0.165, globalBoardPositions.blackFPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackGPawn',
@@ -342,12 +265,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 30,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackGPawn[0],
-				0.165,
-				globalBoardPositions.blackGPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackGPawn[0], 0.165, globalBoardPositions.blackGPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'blackHPawn',
@@ -356,12 +275,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'b',
 				geometryNumber: 32,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.blackHPawn[0],
-				0.165,
-				globalBoardPositions.blackHPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.blackHPawn[0], 0.165, globalBoardPositions.blackHPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteQueen',
@@ -370,12 +285,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 8,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteQueen[0],
-				0.616,
-				globalBoardPositions.whiteQueen[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteQueen[0], 0.616, globalBoardPositions.whiteQueen[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteKing',
@@ -384,12 +295,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 10,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteKing[0],
-				0.444,
-				globalBoardPositions.whiteKing[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteKing[0], 0.444, globalBoardPositions.whiteKing[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteBishopBlack',
@@ -398,12 +305,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 12,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteBishopBlack[0],
-				0.302,
-				globalBoardPositions.whiteBishopBlack[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteBishopBlack[0], 0.302, globalBoardPositions.whiteBishopBlack[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteBishopWhite',
@@ -412,12 +315,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 12,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteBishopWhite[0],
-				0.302,
-				globalBoardPositions.whiteBishopWhite[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteBishopWhite[0], 0.302, globalBoardPositions.whiteBishopWhite[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteBKnight',
@@ -426,12 +325,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 14,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteBKnight[0],
-				0.304,
-				globalBoardPositions.whiteBKnight[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteBKnight[0], 0.304, globalBoardPositions.whiteBKnight[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteGKnight',
@@ -440,12 +335,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 14,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteGKnight[0],
-				0.304,
-				globalBoardPositions.whiteGKnight[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteGKnight[0], 0.304, globalBoardPositions.whiteGKnight[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteARook',
@@ -454,12 +345,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 16,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteARook[0],
-				0.246,
-				globalBoardPositions.whiteARook[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteARook[0], 0.246, globalBoardPositions.whiteARook[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteHRook',
@@ -468,12 +355,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 16,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteHRook[0],
-				0.246,
-				globalBoardPositions.whiteHRook[1]
-			),
-			scale: 0.034,
+			position: new THREE.Vector3(globalBoardPositions.whiteHRook[0], 0.246, globalBoardPositions.whiteHRook[1]),
+			scale: geometryScaleTable.pieces,
 		},
 		{
 			name: 'whiteAPawn',
@@ -482,12 +365,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 18,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteAPawn[0],
-				0.165,
-				globalBoardPositions.whiteAPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteAPawn[0], 0.165, globalBoardPositions.whiteAPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteBPawn',
@@ -496,12 +375,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 20,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteBPawn[0],
-				0.165,
-				globalBoardPositions.whiteBPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteBPawn[0], 0.165, globalBoardPositions.whiteBPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteCPawn',
@@ -510,12 +385,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 22,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteCPawn[0],
-				0.165,
-				globalBoardPositions.whiteCPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteCPawn[0], 0.165, globalBoardPositions.whiteCPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteDPawn',
@@ -524,12 +395,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 24,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteDPawn[0],
-				0.165,
-				globalBoardPositions.whiteDPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteDPawn[0], 0.165, globalBoardPositions.whiteDPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteEPawn',
@@ -538,12 +405,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 26,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteEPawn[0],
-				0.165,
-				globalBoardPositions.whiteEPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteEPawn[0], 0.165, globalBoardPositions.whiteEPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteFPawn',
@@ -552,12 +415,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 28,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteFPawn[0],
-				0.165,
-				globalBoardPositions.whiteFPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteFPawn[0], 0.165, globalBoardPositions.whiteFPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteGPawn',
@@ -566,12 +425,8 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 30,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteGPawn[0],
-				0.165,
-				globalBoardPositions.whiteGPawn[1]
-			),
-			scale: -0.025,
+			position: new THREE.Vector3(globalBoardPositions.whiteGPawn[0], 0.165, globalBoardPositions.whiteGPawn[1]),
+			scale: geometryScaleTable.pawns,
 		},
 		{
 			name: 'whiteHPawn',
@@ -580,27 +435,21 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 				pieceColor: 'w',
 				geometryNumber: 32,
 			},
-			position: new THREE.Vector3(
-				globalBoardPositions.whiteHPawn[0],
-				0.165,
-				globalBoardPositions.whiteHPawn[1]
-			),
-			scale: [-0.025, 0.025, 0.025],
+			position: new THREE.Vector3(globalBoardPositions.whiteHPawn[0], 0.165, globalBoardPositions.whiteHPawn[1]),
+			scale: [geometryScaleTable.pawns, 0.025, 0.025],
 		},
 	]
 
-	const handlePieceClick =
-		(piece: string, name: string, pieceColor: string) =>
-		(e: ThreeEvent<MouseEvent>) => {
-			e.stopPropagation()
-			setChessMoveToSubmitToGame({
-				piece: piece,
-				pieceName: name,
-				coord: '',
-				readyToSubmit: false,
-				pieceColor: pieceColor,
-			})
-		}
+	const handlePieceClick = (piece: string, name: string, pieceColor: string) => (e: ThreeEvent<MouseEvent>) => {
+		e.stopPropagation()
+		setChessMoveToSubmitToGame({
+			piece: piece,
+			pieceName: name,
+			coord: '',
+			readyToSubmit: false,
+			pieceColor: pieceColor,
+		})
+	}
 
 	// TODO #2
 	const renderPieces = pieces.map((p, index) => (
@@ -612,14 +461,12 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 			name={p.name}
 			//@ts-ignore
 			geometry={nodes[`Object_${p.meta.geometryNumber}`].geometry}
-			material={
-				materials[`Figures.${p.meta.pieceColor === 'w' ? 'White' : 'Black'}`]
-			}
+			material={materials[`Figures.${p.meta.pieceColor === 'w' ? 'White' : 'Black'}`]}
 			onClick={handlePieceClick(p.meta.piece, p.name, p.meta.pieceColor)}
 			position={p.position}
 			rotation={[Math.PI / 2, 0, p.meta.pieceColor === 'w' ? 0 : -Math.PI]}
 			//@ts-ignore
-			scale={p.meta.piece === 'P' ? [-0.025, 0.025, 0.025] : p.scale}
+			scale={p.meta.piece === 'P' ? [geometryScaleTable.pawns, 0.025, 0.025] : p.scale}
 		/>
 	))
 
@@ -627,8 +474,7 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 		<>
 			<EffectComposer
 				multisampling={8}
-				autoClear={false}
-			>
+				autoClear={false}>
 				{/* <Bloom mipmapBlur /> */}
 				<Outline
 					selection={[globalRef]}
@@ -637,25 +483,20 @@ export function Board(props: JSX.IntrinsicElements['group'] & IPositions) {
 					blur
 					xRay={false} // so you can't see the outline through other pieces
 					blendFunction={BlendFunction.ALPHA} // set this to BlendFunction.ALPHA for dark outlines
-					visibleEdgeColor={
-						chessMoveToSubmitToGame.pieceColor === 'w' ? 0xffffff : 0x000000
-					} // the color of visible edges
+					visibleEdgeColor={chessMoveToSubmitToGame.pieceColor === 'w' ? 0xffffff : 0x000000} // the color of visible edges
 				/>
 			</EffectComposer>
 			<group
 				{...props}
-				dispose={null}
-			>
+				dispose={null}>
 				<group
 					rotation={[-Math.PI / 2, 0, -Math.PI]}
 					scale={2}
-					position={[0, -0.1, 0]}
-				>
+					position={[0, -0.1, 0]}>
 					<group rotation={[Math.PI / 2, 0, 0]}>
 						<group
 							position={[0, -0.043, 0]}
-							scale={0.025}
-						>
+							scale={0.025}>
 							<mesh
 								castShadow
 								receiveShadow
